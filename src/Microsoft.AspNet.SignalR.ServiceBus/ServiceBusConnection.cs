@@ -30,14 +30,7 @@ namespace Microsoft.AspNet.SignalR.ServiceBus
         public ServiceBusConnection(ServiceBusScaleoutConfiguration configuration, TraceSource traceSource)
         {
             _trace = traceSource;
-            _connectionString = configuration.ConnectionString;
-
-            if (configuration.OperationTimeout != null)
-            {
-                var _connectionStringBuilder = new ServiceBusConnectionStringBuilder(configuration.ConnectionString);
-                _connectionStringBuilder.OperationTimeout = configuration.OperationTimeout.Value;
-                _connectionString = _connectionStringBuilder.ToString();
-            }
+            _connectionString = configuration.GetConnectionString();
 
             try
             {
@@ -362,7 +355,6 @@ namespace Microsoft.AspNet.SignalR.ServiceBus
                 ConnectionContext.Handler(TopicIndex, messages);
             }
         }
-
 
     }
 }
