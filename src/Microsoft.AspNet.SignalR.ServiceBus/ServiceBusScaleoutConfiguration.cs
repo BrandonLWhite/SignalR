@@ -99,9 +99,9 @@ namespace Microsoft.AspNet.SignalR
         {
             if (OperationTimeout != null)
             {
-                var _connectionStringBuilder = new ServiceBusConnectionStringBuilder(ConnectionString);
-                _connectionStringBuilder.OperationTimeout = OperationTimeout.Value;
-                return _connectionStringBuilder.ToString();
+                var connectionStringBuilder = new ServiceBusConnectionStringBuilder(ConnectionString);
+                connectionStringBuilder.OperationTimeout = OperationTimeout.Value;
+                return connectionStringBuilder.ToString();
             }
 
             return ConnectionString;
